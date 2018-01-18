@@ -1,5 +1,8 @@
-// https://processing.org/examples/directorylist.html
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
+// https://processing.org/examples/directorylist.html
 // This function returns all the files in a directory as an array of Strings  
 static String[] listFileNames(String dir) {
   File file = new File(dir);
@@ -46,4 +49,14 @@ static void recurseDir(ArrayList<File> a, String dir) {
   } else {
     a.add(file);
   }
+}
+
+// remove file from list by giving regular expressions
+static String[] extractBy(String[] target, String extract) {
+  ArrayList<String> temp = new ArrayList( Arrays.asList(target) );
+  ArrayList<String> temp2 = new ArrayList(temp);
+  for(String s: temp){
+    if(!s.matches(extract)) temp2.remove(s);
+  }
+  return temp2.toArray(new String[0]);
 }

@@ -16,6 +16,7 @@ boolean hisomode, bgmode, clip;
 
 static String PATH = "";
 static String[] filenames;
+static final String allowedExtensinos = ".+\\.(png|jpg)";
 
 PeasyCam cam;
 PGraphics logWindow;
@@ -40,13 +41,14 @@ void setup() {
   // get all filename in a directory
   PATH = sketchPath() + "/img";
   filenames = listFileNames(PATH);
+  filenames = extractBy(filenames, allowedExtensinos);
   printArray(filenames); //<>//
   pnum = filenames.length; //<>//
   if(pnum==0) {
     println("ERROR: no image file found.");
     exit();
   }else{
-    loadImg(); //<>// //<>//
+    loadImg(); //<>//
   }
 }
 
